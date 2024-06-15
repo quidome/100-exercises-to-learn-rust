@@ -45,9 +45,14 @@
           ];
           shellHook = ''
             cat <<EOF
-            Welcome to the \`changeme\` app development shell.
+            Welcome to the '100-rust-exercises' app development shell.
             EOF
-            user_shell=$(getent passwd "$(whoami)" |cut -d: -f 7)
+            _ostype="$(uname -s)"
+            if [ "$_ostype" = Darwin ] ; then
+              user_shell=$(dscl . -read ~/ UserShell |cut -d' ' -f2)
+            else
+              user_shell=$(getent passwd "$(whoami)" |cut -d: -f7)
+            fi
             exec "$user_shell"
           '';
         };
