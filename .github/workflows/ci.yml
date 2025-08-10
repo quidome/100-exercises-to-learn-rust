@@ -26,7 +26,7 @@ jobs:
           cd book
           mdbook build
       - name: Link Checker
-        uses: lycheeverse/lychee-action@v1
+        uses: lycheeverse/lychee-action@v2
         with:
           fail: true
           args: |
